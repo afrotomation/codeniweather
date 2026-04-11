@@ -32,7 +32,7 @@
 		"@types/react": "^19",
 		"@types/react-dom": "^19",
 		"autoprefixer": "^10.0.1",
-		"axios": "^1.12.2",
+		"axios": "^1.15.0",
 		"baseline-browser-mapping": "^2.10.8",
 		"caniuse-lite": "^1.0.30001779",
 		"class-variance-authority": "^0.7.1",
