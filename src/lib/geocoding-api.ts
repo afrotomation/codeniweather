@@ -1,4 +1,4 @@
-import { geocoding } from '@maptiler/client'
+import { geocoding, config } from '@maptiler/client'
 
 export interface MapTilerLocation {
 	name: string
@@ -17,9 +17,17 @@ export interface MapTilerLocation {
 export class GeocodingAPI {
 	private static instance: GeocodingAPI
 	private apiKey: string
+	private initialized: boolean = false
 
 	private constructor() {
 		this.apiKey=process.env.NEXT_PUBLIC_MAPTILER_API_KEY||'YOUR_MAPTILER_API_KEY'
+		this.initClient()
+	}
+
+	private initClient (): void {
+		if ( this.initialized ) return
+		config.apiKey=this.apiKey
+		this.initialized=true
 	}
 
 	public static getInstance (): GeocodingAPI {
