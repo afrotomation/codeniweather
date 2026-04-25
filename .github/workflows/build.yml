@@ -79,6 +79,8 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
           build-args: |
+            NEXT_PUBLIC_OPENWEATHER_API_KEY=${{ secrets.NEXT_PUBLIC_OPENWEATHER_API_KEY }}
+            NEXT_PUBLIC_MAPTILER_API_KEY=${{ secrets.NEXT_PUBLIC_MAPTILER_API_KEY }}
             NEXT_PUBLIC_ANALYTICS_API_KEY=${{ secrets.NEXT_PUBLIC_ANALYTICS_API_KEY }}
             NEXT_PUBLIC_ANALYTICS_ENDPOINT=${{ secrets.NEXT_PUBLIC_ANALYTICS_ENDPOINT }}
             NEXT_PUBLIC_ANALYTICS_ENABLED=true
@@ -86,3 +88,5 @@ jobs:
             NEXT_PUBLIC_BETTER_STACK_SOURCE_TOKEN=${{ secrets.NEXT_PUBLIC_BETTER_STACK_SOURCE_TOKEN }}
             NEXT_PUBLIC_UMAMI_URL=${{ secrets.NEXT_PUBLIC_UMAMI_URL }}
             NEXT_PUBLIC_UMAMI_WEBSITE_ID=${{ secrets.NEXT_PUBLIC_UMAMI_WEBSITE_ID }}
+            NEXT_PUBLIC_CACHE_DURATION=${{ secrets.NEXT_PUBLIC_CACHE_DURATION }}
+            NEXT_PUBLIC_RATE_LIMIT=${{ secrets.NEXT_PUBLIC_RATE_LIMIT }}
