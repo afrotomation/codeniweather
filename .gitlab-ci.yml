@@ -22,6 +22,12 @@
 #      ($CI_REGISTRY_USER / $CI_REGISTRY_PASSWORD / $CI_REGISTRY are
 #       provided automatically by GitLab.)
 #
+#      App-specific (project-level CI/CD variables on this project):
+#        NEXT_PUBLIC_OPENWEATHER_API_KEY  — weather data + reverse geocoding
+#        NEXT_PUBLIC_MAPTILER_API_KEY     — maps + forward geocoding
+#      Both are baked into the JS bundle at build time; without them the
+#      runtime check in src/lib/weather-api.ts trips with a FETCH_ERROR.
+#
 #   3. Commit + push to the default branch — first build takes ~3-5 min,
 #      image lands at registry.afrotomation.com/afrotomation/<repo>:latest.
 #      ArgoCD image-updater on afrotomation-infra picks up the digest and
@@ -65,6 +71,8 @@ build-image:
         --build-arg "NEXT_PUBLIC_BETTER_STACK_SOURCE_TOKEN=$NEXT_PUBLIC_BETTER_STACK_SOURCE_TOKEN" \
         --build-arg "NEXT_PUBLIC_UMAMI_URL=$NEXT_PUBLIC_UMAMI_URL" \
         --build-arg "NEXT_PUBLIC_UMAMI_WEBSITE_ID=$NEXT_PUBLIC_UMAMI_WEBSITE_ID" \
+        --build-arg "NEXT_PUBLIC_OPENWEATHER_API_KEY=$NEXT_PUBLIC_OPENWEATHER_API_KEY" \
+        --build-arg "NEXT_PUBLIC_MAPTILER_API_KEY=$NEXT_PUBLIC_MAPTILER_API_KEY" \
         -t "$CI_REGISTRY_IMAGE:latest" \
         -t "$CI_REGISTRY_IMAGE:$CI_COMMIT_SHA" \
         -t "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG" \
