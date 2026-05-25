@@ -8,6 +8,13 @@ FROM mirror.gcr.io/library/node:22-alpine AS builder
 RUN npm install -g bun@1.2.17
 RUN apk add --no-cache libc6-compat openssl
 WORKDIR /app
+ENV NEXT_TELEMETRY_DISABLED=1
+
+# Install layer: invalidated only when lockfile changes
+COPY package.json ./
+COPY bun.lock* package-lock.json* ./
+RUN bun install --frozen-lockfile
+
 COPY . .
 
 # NEXT_PUBLIC_* vars must be available as ENV during `bun run build` so
@@ -27,8 +34,7 @@ ARG NEXT_PUBLIC_UMAMI_WEBSITE_ID
 ARG NEXT_PUBLIC_CACHE_DURATION
 ARG NEXT_PUBLIC_RATE_LIMIT
 
-ENV NEXT_TELEMETRY_DISABLED=1 \
-    NEXT_PUBLIC_OPENWEATHER_API_KEY=${NEXT_PUBLIC_OPENWEATHER_API_KEY} \
+ENV NEXT_PUBLIC_OPENWEATHER_API_KEY=${NEXT_PUBLIC_OPENWEATHER_API_KEY} \
     NEXT_PUBLIC_MAPTILER_API_KEY=${NEXT_PUBLIC_MAPTILER_API_KEY} \
     NEXT_PUBLIC_ANALYTICS_API_KEY=${NEXT_PUBLIC_ANALYTICS_API_KEY} \
     NEXT_PUBLIC_ANALYTICS_ENDPOINT=${NEXT_PUBLIC_ANALYTICS_ENDPOINT} \
@@ -39,8 +45,6 @@ ENV NEXT_TELEMETRY_DISABLED=1 \
     NEXT_PUBLIC_UMAMI_WEBSITE_ID=${NEXT_PUBLIC_UMAMI_WEBSITE_ID} \
     NEXT_PUBLIC_CACHE_DURATION=${NEXT_PUBLIC_CACHE_DURATION} \
     NEXT_PUBLIC_RATE_LIMIT=${NEXT_PUBLIC_RATE_LIMIT}
-
-RUN bun install --frozen-lockfile
 
 RUN bun run build
 RUN mkdir -p /app/public
