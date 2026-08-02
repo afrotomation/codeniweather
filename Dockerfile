@@ -2,10 +2,11 @@
 ARG BUN_VERSION=1-alpine
 
 FROM mirror.gcr.io/library/node:22-alpine AS builder
-# bun replaces oven/bun:* builder image. Pulling node from public.ecr.aws
-# (no rate limit) and installing bun keeps build reproducible without
-# touching docker.io.
-RUN npm install -g bun@1.2.17
+# bun is copied out of the official oven/bun image rather than installed with
+# npm: its npm distribution ships no musl+aarch64 build, so `npm install -g
+# bun` fails outright on the ARM host this deploys to. mirror.gcr.io carries
+# oven/bun too, so this still never touches docker.io.
+COPY --from=mirror.gcr.io/oven/bun:1.2.17-alpine /usr/local/bin/bun /usr/local/bin/bun
 RUN apk add --no-cache libc6-compat openssl
 WORKDIR /app
 ENV NEXT_TELEMETRY_DISABLED=1
