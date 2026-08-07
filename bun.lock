@@ -1,10 +1,11 @@
 {
   "lockfileVersion": 1,
+  "configVersion": 0,
   "workspaces": {
     "": {
       "name": "codeniweather",
       "dependencies": {
-        "@codenificient/analytics-sdk": "^1.0.0",
+        "@codenificient/analytics-sdk": "^2.0.0",
         "@maptiler/client": "^2.5.1",
         "@maptiler/sdk": "^3.7.0",
         "@maptiler/weather": "^3.1.1",
@@ -285,7 +286,7 @@
 
     "@bcoe/v8-coverage": ["@bcoe/v8-coverage@0.2.3", "", {}, "sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw=="],
 
-    "@codenificient/analytics-sdk": ["@codenificient/analytics-sdk@1.0.0", "", { "peerDependencies": { "typescript": "^5.0.0" } }, "sha512-V6PbcpQlgpNx1Xicn9J5qMoNNhgTO6NY66NNrQ8JGpAXmRKQZxntwCgd6ifm0dMMa16L6jGOO2y/kgkL4RNJAA=="],
+    "@codenificient/analytics-sdk": ["@codenificient/analytics-sdk@2.0.0", "", { "peerDependencies": { "typescript": "^5.0.0" } }, "sha512-CwpoyNcbWNtZRHB3mLrLncI4mNycBLdPPeajr415mNos61RurpMgMyVhyeVdOCWl+FMC2r/Vir7FW4glgnkrwg=="],
 
     "@csstools/color-helpers": ["@csstools/color-helpers@5.1.0", "", {}, "sha512-S11EXWJyy0Mz5SYvRmY8nJYTFFd1LCNV+7cXyAgQtOOuzb4EsgfqDufL+9esx72/eLhsRdGZwaldu/h+E4t4BA=="],
 

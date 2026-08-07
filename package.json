@@ -22,7 +22,7 @@
 		"test:forecast": "node tests/scripts/test-forecast-feature.js"
 	},
 	"dependencies": {
-		"@codenificient/analytics-sdk": "^1.0.0",
+		"@codenificient/analytics-sdk": "^2.0.0",
 		"@maptiler/client": "^2.5.1",
 		"@maptiler/sdk": "^3.7.0",
 		"@maptiler/weather": "^3.1.1",
